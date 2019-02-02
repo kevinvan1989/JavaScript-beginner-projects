@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <textarea name="" id="userInput" cols="30" rows="10" onkeyup="updating()"></textarea>
+  <p><strong>aantal letters: </strong><span></span></p>
+  <p><strong>aantal woorden: </strong><span></span></p>
+  <p><strong>laatste woord: </strong><span></span></p>
+  <p><strong>'Syntra' komt voor: </strong><span></span></p>
+  <input type="button" value="To Uppercase" class="btn" onclick="changeToUpper()">
+  <input type="button" value="To LowerCase" class="btn" onclick="changeToLower()">
+
+  <script>
+    let spans = document.querySelectorAll("span");
+
+
+    const updating = () => {
+      
+      const txt = document.querySelector("#userInput").value;
+
+      // FIND OUT THE CURRENT WORD COUNT
+      const wordCount = (x) => {
+        x = x.split(' ');
+        return x.length;
+      }
+
+      // FIND LAST WORD
+      const lastWord = (x) => {
+        x = x.split(' ');
+        return x[x.length-1];
+      }
+
+      // FIND SYNTRA
+      const syntraSearch = (x) => {
+        x = x.toLowerCase();
+        if(x.indexOf('syntra') == -1) {
+          return false;
+        }else{
+          return true;
+        }
+      }
+
+
+      spans[0].innerHTML = txt.length;
+      spans[1].innerHTML = wordCount(txt);
+      spans[2].innerHTML = lastWord(txt);
+      spans[3].innerHTML = syntraSearch(txt);
+    }
+
+    const changeToUpper = () => {
+      let output = document.querySelector("#userInput");
+      output.value = output.value.toUpperCase();
+    }
+
+    const changeToLower = () => {
+      let output = document.querySelector("#userInput");
+      output.value = output.value.toLowerCase();
+    }
+  </script>
+</body>
+</html>
